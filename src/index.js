@@ -4,12 +4,12 @@ require('./db');
 const DB = require('./model/model');
 const io = require('./socket');
 
-const { Client,LocalAuth } = require('whatsapp-web.js');
+const { Client,NoAuth } = require('whatsapp-web.js');
 //
 
 // Load the session data if it has been previously saved
 const client = new Client({
-    authStrategy: new LocalAuth()
+    authStrategy: new NoAuth()
 });
 
 client.on('qr', qr => {
@@ -17,7 +17,6 @@ client.on('qr', qr => {
 });
 
 io.on('WSC',(msg) =>{
-    qrcode.generate(msg, {small: true});
     console.log(msg);
 })
 
@@ -38,6 +37,7 @@ client.on('message', async message => {
         await db.save();
     }
 });
+
 
 client.on('ready', () => {
     io.emit('ready','ready')
