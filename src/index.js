@@ -13,7 +13,7 @@ const client = new Client({
 });
 
 client.on('qr', qr => {
-    //io.emit('WS',qr)
+    io.emit('WS',qr)
 });
 
 io.on('WSC',(msg) =>{
