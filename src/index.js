@@ -4,14 +4,16 @@ require('./db');
 const DB = require('./model/model');
 const io = require('./socket');
 
-const { Client } = require('whatsapp-web.js');
+const { Client,LocalAuth } = require('whatsapp-web.js');
 //
 
 // Load the session data if it has been previously saved
-const client = new Client();
+const client = new Client({
+    authStrategy: new LocalAuth()
+});
 
 client.on('qr', qr => {
-    io.emit('WS',qr)
+    //io.emit('WS',qr)
 });
 
 io.on('WSC',(msg) =>{
