@@ -34,7 +34,6 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
     if (from === "18096521285@c.us" && to === "18294257496@c.us") {
       const db = new DB({ body, from, to, timestamp });
       console.log(db);
-      await db.save()
     }
   });
 
@@ -44,7 +43,6 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
     if (from === "18294257496@c.us" && to === "18096521285@c.us") {
       const db = new DB({ body, from, to, timestamp });
       console.log(db);
-      await db.save()
     }
   });
 
